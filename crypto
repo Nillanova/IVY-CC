@@ -1,0 +1,185 @@
+import hashlib
+import json
+from pydoc import render_doc
+from smtplib import _SendErrs
+import time
+from urllib import request
+from urllib.parse import urlparse
+
+
+class Blockchain (object): 
+    def __init__(self):
+        class Block (object):
+            def __init__(self):
+                class Transaction (object):
+                    def __init__(self):
+
+                        class Blockchain (object): 
+                            def __init__(self):
+                                self.chain = []; #Blockchain is an array of Blocks
+class Block (object):
+    def __init__(self, transactions, time, index):
+        self.index = index; #Block Number
+        self.transactions = transactions; #Transaction Data
+        self.time = time; #Time block was created
+        self.prev = ''; #Hash of Previous Block
+        self.hash = self.calculateHash(); #Hash of Block
+    def calculateHash(self):
+        hashTransactions = ""
+
+        for transaction in self.transactions:
+            hashTransactions += transaction.hash
+
+        hashString = str(self.time) + hashTransactions + self.prev + str(self.index) + str(self.nonse)
+        hashEncoded = json.dumps(hashString, sort_keys=True).encode()
+        return hashlib.sha256(hashEncoded).hexdigest()
+class Transaction (object):
+    def __init__(self, sender, reciever, amt):
+        self.sender = sender
+        self.reciever = reciever
+        self.amt = amt
+        self.time = time()
+        self.hash = self.calculateHash()
+    def calculateHash(self):
+        hashString = self.sender + self.reciever + str(self.amt) + str(self.time)
+        hashEncoded = json.dumps(hashString, sort_keys=True).encode()
+        return hashlib.sha256(hashEncoded).hexdigest()
+
+        class Blockchain (object):
+    
+                                def getLastBlock(self):
+                                    return self.chain[-1]
+    def addBlock(self, block):
+        if(len(self.chain) > 0):
+            block.prev = self.getLastBlock().hash
+        else:
+            block.prev = "none"
+        self.chain.append(block)
+
+class Blockchain (object):
+    def __init__(self):
+        self.chain = [self.addGenesisBlock()]
+        self.pendingTransactions = []
+        self.difficulty = 4
+        self.minerRewards = 50
+        self.blockSize = 10
+    def addTransaction(self, sender, reciever, amt, keyString, senderKey):
+        keyByte = keyString.encode("ASCII")
+        senderKeyByte = senderKey.encode("ASCII")
+    #print(type(keyByte), keyByte);
+    key = RSA.import_key(keyByte)
+    senderKey = RSA.import_key(senderKeyByte)
+    if not _SendErrs or not reciever or not amt:
+            print("transaction error 1")
+            return False
+    transaction = Transaction(render_doc, reciever, amt)
+    transaction.signTransaction(key, senderKey)
+    if not transaction.isValidTransaction():
+            print("transaction error 2")
+            return False
+            self.pendingTransactions.append(transaction)
+            return len(self.chain) + 1
+    
+class Block (object):
+        
+     def mineBlock(self, difficulty):
+        arr = []
+        for i in range(0, difficulty):
+            arr.append(i+1)
+        
+        #compute until the beginning of the hash = 0123..difficulty
+        arrStr = map(str, arr);  
+        hashPuzzle = ''.join(arrStr)
+        #print(len(hashPuzzle));
+        while self.hash[0:difficulty] != hashPuzzle:
+            self.nonse += 1
+            self.hash = self.calculateHash()
+            '''
+            print("Nonse:", self.nonse);
+            print("Hash Attempt:", self.hash);
+            print("Hash We Want:", hashPuzzle,"...");
+            print("");
+            #sleep(0.8);
+            '''
+        print("")
+        print("Block Mined! Nonse to Solve Proof Of Work:", self.nonse)
+        return True
+
+class Blockchain (object):
+    ...
+    def addTransaction(self, sender, reciever, amt, keyString, senderKey):
+        keyByte = keyString.encode("ASCII")
+        senderKeyByte = senderKey.encode("ASCII")
+        key = RSA.import_key(keyByte)
+        senderKey = RSA.import_key(senderKeyByte)
+        if not sender or not reciever or not amt:
+            print("transaction error 1")
+            return False
+        transaction = Transaction(sender, reciever, amt)
+        transaction.signTransaction(key, senderKey)
+        if not transaction.isValidTransaction():
+            print("transaction error 2")
+            return False
+        self.pendingTransactions.append(transaction)
+        return len(self.chain) + 1
+    def generateKeys(self):
+        key = RSA.generate(2048)
+        private_key = key.export_key()
+        file_out = open("private.pem", "wb")
+        file_out.write(private_key)
+        public_key = key.publickey().export_key()
+        file_out = open("receiver.pem", "wb")
+        file_out.write(public_key)
+        
+        #print(key.export_key());
+        return key.publickey().export_key().decode('ASCII')
+class Transaction (object):
+    ...
+    def signTransaction(self, key, senderKey):
+        if(self.hash != self.calculateHash()):
+            print("transaction tampered error")
+            return False
+        if(str(key.publickey().export_key()) != str(senderKey.publickey().export_key())):
+            print("Transaction attempt to be signed from another wallet")
+            return False
+        self.signature = "made"
+        #print(key.sign(self.hash, ""));
+        print("Made Signature!")
+        return True
+    def isValidTransaction(self):
+        if(self.hash != self.calculateHash()):
+            return False
+        if(self.sender == self.reciever):
+            return False
+        if(self.sender == "Miner Rewards"):
+            return True
+        if not self.signature or len(self.signature) == 0:
+            print("No Signature!")
+            return False
+        return True
+
+class Blockchain (object):
+    ...
+    def register_node(self, address):
+        parsedUrl = urlparse(address)
+        self.nodes.add(parsedUrl.netloc)
+
+class Blockchain (object):
+    ...
+    def resolveConflicts(self):
+        neighbors = self.nodes
+        newChain = None
+        maxLength = len(self.chain)
+        for node in neighbors:
+            response = request.get(f'http://{node}/chain')
+            if response.status_code == 200:
+                length = response.json()['length']
+                chain = response.json()['chain']
+            if length > maxLength and self.isValidChain():
+                    maxLength = length
+                    newChain = chain
+        if newChain:
+            self.chain = self.chainJSONdecode(newChain)
+            print(self.chain)
+            return True
+        return False
